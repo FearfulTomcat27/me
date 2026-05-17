@@ -27,7 +27,7 @@ export const aboutData = {
       description: "利用 SpringBoot、Gin 和现代框架构建健壮的 API 和服务器端解决方案。",
     },
     {
-      icon: "Brain",
+      icon: "Astroid",
       title: "Agent应用",
       description: "使用Langchain、LangGraph等框架构建Agent应用。",
     },

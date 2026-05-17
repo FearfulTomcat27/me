@@ -1,10 +1,10 @@
-import { Database, Code, Brain, Zap } from "lucide-react";
+import { Database, Code, Astroid, Zap } from "lucide-react";
 import { aboutData } from "@/lib/portfolio-data";
 
 const iconMap = {
   Code,
   Zap,
-  Brain,
+  Astroid,
   Database,
 };
 
