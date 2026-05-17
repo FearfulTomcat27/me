@@ -55,6 +55,18 @@ export default function Home() {
             </div>
           </main>
         </div>
+
+        {/* Footer */}
+        <footer className="mt-4 md:mt-6 text-center">
+          <a
+            href="https://beian.miit.gov.cn/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            蜀ICP备2025178669号-1
+          </a>
+        </footer>
       </div>
     </div>
   );
