@@ -99,20 +99,6 @@ export const portfolioData = {
   ],
 };
 
-export const blogData = {
-  posts: [
-    {
-      title: "使用 Next.js 15 构建现代 Web 应用程序",
-      category: "Web开发",
-      date: "2024年6月18日",
-      readTime: "8分钟",
-      image: "/web-development-coding.png",
-      excerpt: "深入探讨 Next.js 15 的新功能及 App Router 的增强功能。",
-      tags: ["Next.js", "React", "Web开发"],
-      slug: "building-modern-web-apps-nextjs-15",
-    },
-  ],
-};
 
 export const contactData = {
   email: "fearfultomcat27@qq.com",
