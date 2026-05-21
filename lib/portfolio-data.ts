@@ -93,7 +93,7 @@ export const portfolioData = {
       image: "/wetalk-preview.png",
       description: "基于WebSocket的在线聊天网站。",
       tech: ["Next.js", "WebSocket", "Gin"],
-      liveUrl: "https://example.com",
+      liveUrl: "http://47.108.136.222/",
       githubUrl: "https://github.com/fearfultomcat27/wetalk",
     },
   ],
