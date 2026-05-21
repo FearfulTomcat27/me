@@ -1,0 +1,16 @@
+<svg viewBox="0 0 220 230" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="dots" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#002FA7" opacity="0.18" />
+    </pattern>
+  </defs>
+
+  <polygon points="115,25 201.6,75 201.6,175 115,225 28.4,175 28.4,75" fill="#000" />
+  <polygon points="110,20 196.6,70 196.6,170 110,220 23.4,170 23.4,70" fill="#002FA7" stroke="#000" stroke-width="6" stroke-linejoin="round" />
+  <polygon points="110,20 196.6,70 196.6,170 110,220 23.4,170 23.4,70" fill="url(#dots)" stroke="none" />
+
+  <g fill="#fff" stroke="#000" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M 70,55 L 155,55 L 155,80 L 98,80 L 98,185 L 70,185 Z" />
+    <path d="M 98,100 L 150,100 L 150,125 L 98,125 Z" />
+  </g>
+</svg>

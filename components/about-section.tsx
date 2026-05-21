@@ -1,5 +1,5 @@
-import { Database, Code, Astroid, Zap } from "lucide-react";
-import { aboutData } from "@/lib/portfolio-data";
+import { Database, Code, Astroid, Zap } from 'lucide-react';
+import { aboutData } from '@/lib/portfolio-data';
 
 const iconMap = {
   Code,

@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { ExternalLink, Eye } from 'lucide-react'
-import { portfolioData } from '@/lib/portfolio-data'
+import { useState } from 'react';
+import { ExternalLink, Eye } from 'lucide-react';
+import { portfolioData } from '@/lib/portfolio-data';
 
 interface PortfolioSectionProps {
-  data?: typeof portfolioData
+  data?: typeof portfolioData;
 }
 
 export function PortfolioSection({ data = portfolioData }: PortfolioSectionProps) {
-  const [activeFilter, setActiveFilter] = useState('全部')
+  const [activeFilter, setActiveFilter] = useState('全部');
 
   const filteredProjects =
-    activeFilter === '全部' ? data.projects : data.projects.filter((p) => p.category === activeFilter)
+    activeFilter === '全部' ? data.projects : data.projects.filter((p) => p.category === activeFilter);
 
   return (
     <div className='space-y-6 md:space-y-8'>
@@ -29,8 +29,8 @@ export function PortfolioSection({ data = portfolioData }: PortfolioSectionProps
             onClick={() => setActiveFilter(category)}
             className={`px-4 md:px-5 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-medium capitalize transition-all ${
               activeFilter === category
-                ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20"
-                : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
+                ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/20'
+                : 'bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80'
             }`}
           >
             {category}
@@ -46,7 +46,7 @@ export function PortfolioSection({ data = portfolioData }: PortfolioSectionProps
           >
             <div className='aspect-[4/3] overflow-hidden bg-background'>
               <img
-                src={project.image || "/placeholder.svg"}
+                src={project.image || '/placeholder.svg'}
                 alt={project.title}
                 className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-500'
               />

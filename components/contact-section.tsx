@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import { Mail, Phone, MapPin, Send } from 'lucide-react'
-import { useState } from 'react'
-import { contactData } from '@/lib/portfolio-data'
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useState } from 'react';
+import { contactData } from '@/lib/portfolio-data';
 
 interface ContactSectionProps {
-  data?: typeof contactData
+  data?: typeof contactData;
 }
 
 export function ContactSection({ data = contactData }: ContactSectionProps) {
@@ -13,13 +13,13 @@ export function ContactSection({ data = contactData }: ContactSectionProps) {
     name: '',
     email: '',
     message: '',
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle form submission
-    console.log('Form submitted:', formData)
-  }
+    console.log('Form submitted:', formData);
+  };
 
   return (
     <div className='space-y-6 md:space-y-8'>
@@ -64,7 +64,7 @@ export function ContactSection({ data = contactData }: ContactSectionProps) {
           <div>
             <h3 className='text-xs md:text-sm font-medium text-muted-foreground mb-1'>电话</h3>
             <a
-              href={`tel:${data.phone.replace(/\s/g, "")}`}
+              href={`tel:${data.phone.replace(/\s/g, '')}`}
               className='text-sm md:text-base text-foreground hover:text-accent transition-colors font-medium'
             >
               {data.phone}

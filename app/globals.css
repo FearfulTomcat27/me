@@ -132,7 +132,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -140,7 +140,8 @@
 
 /* Updated profile picture border animation to subtle shining effect */
 @keyframes pulse-slow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
   }
   50% {

@@ -10,6 +10,9 @@ pnpm dev              # 启动开发服务器 (localhost:3000)
 pnpm build            # 生产构建
 pnpm start            # 启动生产服务器
 pnpm lint             # ESLint 检查
+pnpm lint:fix         # ESLint 自动修复
+pnpm format           # Prettier 格式化所有文件
+pnpm format:check     # Prettier 格式检查（不写入）
 ```
 
 ## 技术栈
@@ -21,6 +24,7 @@ pnpm lint             # ESLint 检查
 - **主题**: next-themes，但 `ThemeToggle` 组件直接操作 `document.documentElement.classList` 和 localStorage，实际主题控制以 `ThemeToggle` 为准
 - **Markdown**: react-markdown + remark-gfm（渲染）、gray-matter（frontmatter 解析）
 - **语法高亮**: react-syntax-highlighter（Prism），主题为 Catppuccin Mocha
+- **代码格式化**: ESLint 9（flat config）+ Prettier 3
 - **包管理**: pnpm
 
 ## 项目架构
@@ -38,6 +42,7 @@ pnpm lint             # ESLint 检查
 ### 数据流
 
 #### 主页数据
+
 `lib/portfolio-data.ts` 是主页所有非博客数据的唯一源，导出以下对象：
 
 - `profileData` — 姓名、头像、联系方式、GitHub 链接
@@ -47,6 +52,7 @@ pnpm lint             # ESLint 检查
 - `contactData` — 联系方式 + Google Maps 嵌入 URL
 
 #### 博客数据
+
 `lib/blog.ts` 提供文件系统驱动的博客数据，读取 `content/blog/*.md`：
 
 - `getAllPosts()` — 扫描目录，解析 frontmatter，按日期倒序返回文章元数据列表
@@ -56,6 +62,7 @@ pnpm lint             # ESLint 检查
 ### 组件说明
 
 **主页组件**
+
 - `components/portfolio-shell.tsx` — `"use client"`，接收 `posts` prop，管理 `activeSection` tab 状态，渲染整个主页框架
 - `components/profile-sidebar.tsx` — 左侧个人卡片（头像、联系方式、GitHub），内含内联 `GitHubIcon` SVG
 - `components/about-section.tsx` — "关于我" + "我正在做什么"（icon 字符串到组件的映射）
@@ -68,6 +75,7 @@ pnpm lint             # ESLint 检查
 - `components/project-card.tsx` — 独立项目卡片（使用 `next/image`），当前未被引用
 
 **博客组件**
+
 - `components/blog-content.tsx` — `"use client"`，react-markdown 渲染器，自定义所有 Markdown 元素样式，图片路径自动转换（`./assets/` → `/blog/assets/`）
 - `components/code-block.tsx` — `"use client"`，代码块组件，含语法高亮（SyntaxHighlighter）、横向滚动、复制按钮（2s 后复原）
 - `components/table-of-contents.tsx` — `"use client"`，博客详情页悬浮目录，`fixed` 定位于视口右侧，使用 IntersectionObserver 追踪当前节
@@ -101,8 +109,34 @@ Markdown frontmatter 必填字段：`title`、`date`（ISO格式，用于排序�
 - TypeScript 的 `ignoreBuildErrors: true`（`next.config.mjs`），构建不会因类型错误失败
 - `images.unoptimized: true`，不使用 Next.js 图片优化
 - `tsconfig.json` 中 `@/*` 映射到项目根目录
-- ESLint 依赖 Next.js 内置，未单独安装到 devDependencies
 - `app/page.tsx` 是服务端组件（无 `"use client"`），客户端交互逻辑在 `PortfolioShell`
+
+## 代码格式化
+
+### ESLint 配置（`eslint.config.mjs`）
+
+使用 ESLint 9 flat config，依赖以下包：`eslint@9`、`eslint-config-next`、`eslint-config-prettier`、`@typescript-eslint/eslint-plugin`。
+
+规则说明：
+- `@typescript-eslint/no-unused-vars`：warn（`_` 前缀参数忽略）
+- `@typescript-eslint/no-explicit-any`：warn
+- `@next/next/no-img-element`：off（项目使用 `images.unoptimized: true`，允许 `<img>` 标签）
+
+### Prettier 配置（`.prettierrc`）
+
+```json
+{
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "printWidth": 120,
+  "arrowParens": "always"
+}
+```
+
+`.prettierignore` 排除：`.next/`、`node_modules/`、`pnpm-lock.yaml`、`public/`、`content/`（博客 Markdown 文件不格式化）。
 
 ## 设计风格规范
 
@@ -112,18 +146,19 @@ Markdown frontmatter 必填字段：`title`、`date`（ISO格式，用于排序�
 
 使用 OKLCH 色彩空间，通过 CSS 变量定义语义色板，在 `globals.css` 中由 `@theme inline` 映射为 Tailwind tokens：
 
-| Token | 用途 |
-|---|---|
-| `background` | 页面背景 |
-| `foreground` | 正文文字颜色 |
-| `card` | 卡片/容器背景 |
-| `secondary` | 次级容器背景（标签、输入框背景、区块底色） |
-| `muted-foreground` | 次要文字（描述文本、标签、元信息） |
-| `accent` | 强调色（蓝紫色 ~0.22 色度），用于图标、链接、按钮背景、hover 边框 |
-| `accent-foreground` | 强调色背景上的文字 |
-| `border` | 所有边框颜色 |
+| Token               | 用途                                                              |
+| ------------------- | ----------------------------------------------------------------- |
+| `background`        | 页面背景                                                          |
+| `foreground`        | 正文文字颜色                                                      |
+| `card`              | 卡片/容器背景                                                     |
+| `secondary`         | 次级容器背景（标签、输入框背景、区块底色）                        |
+| `muted-foreground`  | 次要文字（描述文本、标签、元信息）                                |
+| `accent`            | 强调色（蓝紫色 ~0.22 色度），用于图标、链接、按钮背景、hover 边框 |
+| `accent-foreground` | 强调色背景上的文字                                                |
+| `border`            | 所有边框颜色                                                      |
 
 **典型使用模式**:
+
 - 页面大背景: `bg-background`
 - 卡片/侧边栏: `bg-card border border-border rounded-2xl`
 - 次级区块/标签: `bg-secondary`
@@ -143,8 +178,8 @@ Markdown frontmatter 必填字段：`title`、`date`（ISO格式，用于排序�
 
 ```tsx
 <div>
-  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">区块标题</h2>
-  <div className="w-10 h-1 bg-accent rounded-full mb-6" />
+  <h2 className='text-2xl md:text-3xl font-bold text-foreground mb-4'>区块标题</h2>
+  <div className='w-10 h-1 bg-accent rounded-full mb-6' />
 </div>
 ```
 
@@ -195,6 +230,7 @@ Markdown frontmatter 必填字段：`title`、`date`（ISO格式，用于排序�
 ### 主题切换实现
 
 `ThemeToggle` 独立控制，不依赖 next-themes 的 `useTheme` hook：
+
 1. 状态 `useState<'light' | 'dark'>`，默认 `'dark'`
 2. 通过 `document.documentElement.classList.toggle('dark', ...)` 切换
 3. 偏好存入 `localStorage`，初始化时读取

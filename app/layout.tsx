@@ -1,41 +1,23 @@
-import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
+import type { Metadata } from 'next';
+import { Poppins } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
+import './globals.css';
 
 const poppins = Poppins({
-  subsets: ["latin"],
+  subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-poppins'
+  variable: '--font-poppins',
 });
 
 export const metadata: Metadata = {
-  title: "YuYong - 全栈开发者",
-  description: "YuYong的个人网站。",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.png",
-        type: "image/png",
-      },
-    ],
-    apple: "/icon.png",
-  },
+  title: 'YuYong - 全栈开发者',
+  description: 'YuYong的个人网站。',
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html>

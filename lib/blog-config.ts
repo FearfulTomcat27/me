@@ -1,5 +1,5 @@
-import catppuccinMocha from "@/lib/catppuccin-mocha";
-import type { CSSProperties } from "react";
+import catppuccinMocha from '@/lib/catppuccin-mocha';
+import type { CSSProperties } from 'react';
 
 export interface BlogConfig {
   code: {
@@ -28,14 +28,14 @@ const blogConfig: BlogConfig = {
   code: {
     theme: catppuccinMocha,
     fontFamily: "Consolas, 'Courier New', monospace",
-    fontSize: "14px",
-    lineHeight: "1.75",
-    background: "#1e1e2e",
-    langLabelColor: "#cba6f7",
+    fontSize: '14px',
+    lineHeight: '1.75',
+    background: '#1e1e2e',
+    langLabelColor: '#cba6f7',
   },
   prose: {
-    fontSize: "text-sm md:text-base",
-    lineHeight: "leading-relaxed",
+    fontSize: 'text-sm md:text-base',
+    lineHeight: 'leading-relaxed',
   },
 };
 

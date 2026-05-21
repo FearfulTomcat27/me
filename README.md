@@ -12,17 +12,17 @@
 
 ## 技术栈
 
-| 类别 | 技术 |
-|---|---|
-| 框架 | Next.js 16 (App Router) + React 19 |
-| 语言 | TypeScript 6 |
-| 样式 | Tailwind CSS v4 + OKLCH CSS 变量 |
-| 图标 | lucide-react |
-| 主题 | next-themes |
-| Markdown | react-markdown + remark-gfm + gray-matter |
+| 类别     | 技术                                        |
+| -------- | ------------------------------------------- |
+| 框架     | Next.js 16 (App Router) + React 19          |
+| 语言     | TypeScript 6                                |
+| 样式     | Tailwind CSS v4 + OKLCH CSS 变量            |
+| 图标     | lucide-react                                |
+| 主题     | next-themes                                 |
+| Markdown | react-markdown + remark-gfm + gray-matter   |
 | 语法高亮 | react-syntax-highlighter (Catppuccin Mocha) |
-| 包管理 | pnpm |
-| 部署 | Vercel |
+| 包管理   | pnpm                                        |
+| 部署     | Vercel                                      |
 
 ## 本地开发
 
@@ -51,14 +51,14 @@ content/blog/
 
 ```markdown
 ---
-title: "文章标题"
-date: "2024-06-18"
-dateDisplay: "2024年6月18日"
-category: "分类"
-excerpt: "摘要，显示在卡片和详情页标题下方"
-tags: ["Tag1", "Tag2"]
-image: "cover/my-cover.png"   # 省略则使用默认占位图
-readTime: "5分钟"
+title: '文章标题'
+date: '2024-06-18'
+dateDisplay: '2024年6月18日'
+category: '分类'
+excerpt: '摘要，显示在卡片和详情页标题下方'
+tags: ['Tag1', 'Tag2']
+image: 'cover/my-cover.png' # 省略则使用默认占位图
+readTime: '5分钟'
 ---
 
 正文 Markdown 内容...
